@@ -28,7 +28,7 @@ For local APP in Linux/Deepin
 (1) Download an executable binary from https://github.com/VicoandMe/XwalkDriver
 
 (2) Add --remote-debugging-port behind the 'exec' command in your local APP. 
-   e.g I packaged a example named foo. And I installed 'foo' in /usr/bin
+   e.g I packaged an example named 'foo'. And I installed 'foo' in /usr/bin
        vim /usr/bin/foo
 
        add --remote-debugging-port in the last line:
