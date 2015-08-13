@@ -23,6 +23,29 @@ $ python
 >>> driver.Quit()
 >>> cd_server.Kill()
 
+For local APP in Linux/Deepin
+
+(1) Download an executable binary from https://github.com/VicoandMe/XwalkDriver
+
+(2) Add --remote-debugging-port behind the 'exec' command in your local APP. 
+   e.g I packaged a example named foo. And I installed 'foo' in /usr/bin
+       vim /usr/bin/foo
+
+       add --remote-debugging-port in the last line:
+       exec xwalk "${BASEDIR}/www/manifest.json" --remote-debugging-port=12450
+
+(3) Use following python instructions to do a basic test.
+
+$ export PYTHONPATH=<THIS_DIR>/server:<THIS_DIR>/client
+$ python
+>>> import server
+>>> import xwalkdriver
+>>> cd_server = server.Server('/path/to/xwalkdriver/executable')
+>>> driver = xwalkdriver.XwalkDriver('http://127.0.0.1:9515', xwalk_binary = '/usr/bin/foo', debug_port = '12450')
+>>> driver.Quit()
+>>> cd_server.Kill()
+
+
 For Android xwalk:
 
 (1) Build XwalkDriver by building the 'xwalkdriver' target and get an executable
