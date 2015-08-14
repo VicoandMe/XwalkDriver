@@ -69,3 +69,35 @@ $ python
 >>> driver = xwalkdriver.XwalkDriver('http://127.0.0.1:9515', android_package='', android_activity='')
 >>> driver.quit()
 
+Use selenium to do TEST
+(1) Download an executable binary from https://github.com/VicoandMe/XwalkDri    ver
+
+(2) Add --remote-debugging-port behind the 'exec' command in your local APP.    
+  e.g I packaged an example named 'foo'. And I installed 'foo' in /usr/bin        vim /usr/bin/foo
+      add --remote-debugging-port in the last line:
+        exec xwalk "${BASEDIR}/www/manifest.json" --remote-debugging-port=12450
+(3) Use following python instructions to do a basic test.
+
+>>>import time
+>>>from selenium import webdriver
+>>>capabilities = {'loggingPrefs': {}, 
+	           'xwalkOptions': {
+	             'binary': '/usr/bin/foo', 
+		     'debugPort': '12450'
+	             }
+	          }
+>>>driver = webdriver.Chrome('/path/to/xwalkdriver',desired_capabilities = capabilities)
+>>>driver.get('http://www.baidu.com')
+>>>search_box = driver.find_element_by_name('wd')
+>>>search_box.send_keys('WebDriver')
+>>>search_box.submit()
+
+
+
+
+
+
+
+ 
+	
+
